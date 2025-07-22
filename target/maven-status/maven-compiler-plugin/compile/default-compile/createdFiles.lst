@@ -1,0 +1,5 @@
+re\ToDoList\ToDoList\ToDoListApplication.class
+re\ToDoList\ToDoList\repository\TaskRepository.class
+re\ToDoList\ToDoList\controller\TaskController.class
+re\ToDoList\ToDoList\service\TaskService.class
+re\ToDoList\ToDoList\model\Task.class
