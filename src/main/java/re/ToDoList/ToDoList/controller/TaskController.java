@@ -1,12 +1,12 @@
 package re.ToDoList.ToDoList.controller;
 import re.ToDoList.ToDoList.model.Task;
 import re.ToDoList.ToDoList.service.TaskService;
+import re.ToDoList.ToDoList.dto.TaskCreateRequest;
+import re.ToDoList.ToDoList.dto.TaskPatchRequest;
 import java.util.List;
-//import java.util.Optional;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/tasks")
@@ -28,26 +28,26 @@ public class TaskController {
     
     @GetMapping("/{id}")
     public ResponseEntity<Task> getOne(@PathVariable Long id) {
-    return service.getTask(id)
-        .map(ResponseEntity::ok)
-        .orElse(ResponseEntity.notFound().build());
-    }
-    // @GetMapping("/{id}")
-    // public Task getOne(@PathVariable Long id) {
-    //     return service.getTask(id).orElseThrow(() -> new RuntimeException("Tâche non trouvée"));
-    // }
+        return ResponseEntity.of(service.getTask(id));
+  }
 
-    // Créer une tâche
     @PostMapping
-    public Task create(@RequestParam String description, @RequestParam(defaultValue = "false") boolean done) {
-        return service.createTask(description, done);
+    public Task create(@Valid @RequestBody TaskCreateRequest body) {
+        return service.createTask(body);
     }
 
-    // Modifier une tâche
+    // Modifier une tâche entièrement
     @PutMapping("/{id}")
-    public Task update(@PathVariable Long id, @RequestBody Task updaptedTask) 
+    public Task update(@PathVariable Long id, @Valid @RequestBody TaskCreateRequest  body) 
     {
-        return service.updateTask(id, updaptedTask)
+        return service.updateFull(id, body)
+            .orElseThrow(() -> new RuntimeException("Tâche non trouvée"));
+    }
+
+    // Modifier une tache partiellement
+    @PatchMapping("/{id}")
+    public Task partialUpdate(@PathVariable Long id, @RequestBody TaskPatchRequest body) {
+        return service.updatePartial(id, body )
             .orElseThrow(() -> new RuntimeException("Tâche non trouvée"));
     }
 

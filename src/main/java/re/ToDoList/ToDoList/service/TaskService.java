@@ -1,6 +1,9 @@
 package re.ToDoList.ToDoList.service;
 
 import org.springframework.stereotype.Service;
+
+import re.ToDoList.ToDoList.dto.TaskCreateRequest;
+import re.ToDoList.ToDoList.dto.TaskPatchRequest;
 import re.ToDoList.ToDoList.model.Task;
 import re.ToDoList.ToDoList.repository.TaskRepository;
 
@@ -25,24 +28,31 @@ public class TaskService {
         return repo.findById(id);
     }
 
-    public Task createTask(String description, boolean done) {
-        Task task = new Task();
-        task.setDescription(description);
-        task.setDone(done);
-        return repo.save(task);
+    public Task createTask(TaskCreateRequest req) {
+        Task t = new Task();
+        t.setDescription(req.description().trim());
+        t.setDone(req.done());
+        return repo.save(t);
     }
 
-    public Optional<Task> updateTask(Long id, Task updatedTask) {
-        Optional<Task> existing = repo.findById(id);
-        if (existing.isPresent()) {
-            Task task = existing.get();
-            task.setDescription(updatedTask.getDescription());
-            task.setDone(updatedTask.isDone());
-            repo.save(task);
-            return Optional.of(task);
-        } else {
-            return Optional.empty();
+    public Optional<Task> updateFull(Long id, TaskCreateRequest req) {
+        return repo.findById(id).map(t -> {
+            t.setDescription(req.description().trim());
+            t.setDone(req.done());
+            return repo.save(t);
+        });
         }
+
+    public Optional<Task> updatePartial(Long id, TaskPatchRequest req) {
+        return repo.findById(id).map(t -> {
+        if (req.description() != null && !req.description().isBlank()) {
+            t.setDescription(req.description().trim());
+        }
+        if (req.done() != null) {
+            t.setDone(req.done());
+        }
+        return repo.save(t);
+        });
     }
 
     public void deleteTask(Long id) {
