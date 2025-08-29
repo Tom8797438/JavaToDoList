@@ -1,7 +1,9 @@
 package re.ToDoList.ToDoList.model;
 
-import java.sql.Date;
+// import java.sql.Date;
+import java.time.LocalDate;
 
+// import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
@@ -18,7 +20,7 @@ public class Task {
     private boolean done;
     //rajout (les 2 lignes doivent être "nullables")
     private Integer priority;
-    private Date dueDate;
+    private LocalDate dueDate;
 
 
     // Constructeur par défaut requis par JPA
@@ -42,6 +44,6 @@ public class Task {
     // rajout
     public Integer getPriority() {return priority; }
     public void setPriority (Integer priority) { this.priority = priority; }
-    public Date getDueDate() { return dueDate; }
-    public void setDueDate(Date dueDate) { this.dueDate = dueDate;}
+    public LocalDate getDueDate() { return dueDate; }
+    public void setDueDate(LocalDate dueDate) { this.dueDate = dueDate;}
 }

@@ -1,11 +1,3 @@
-// package re.ToDoList.ToDoList.dto;
-
-// import java.text.DateFormat;
-
-// public class TaskDto {
-//     public record TaskRequestDTO(String description, boolean done, Integer priority, DateFormat dueDate) {}
-// }
-
 package re.ToDoList.ToDoList.dto;
 
 import jakarta.validation.constraints.NotBlank;

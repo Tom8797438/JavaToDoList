@@ -32,6 +32,8 @@ public class TaskService {
         Task t = new Task();
         t.setDescription(req.description().trim());
         t.setDone(req.done());
+        t.setPriority(req.priority());
+        t.setDueDate(req.dueDate());
         return repo.save(t);
     }
 
@@ -39,6 +41,8 @@ public class TaskService {
         return repo.findById(id).map(t -> {
             t.setDescription(req.description().trim());
             t.setDone(req.done());
+            t.setPriority(req.priority());
+            t.setDueDate(req.dueDate());  
             return repo.save(t);
         });
         }
@@ -50,6 +54,12 @@ public class TaskService {
         }
         if (req.done() != null) {
             t.setDone(req.done());
+        }
+        if (req.priority() != null) {
+            t.setPriority(req.priority());
+        }
+        if (req.dueDate() != null) {
+            t.setDueDate(req.dueDate());
         }
         return repo.save(t);
         });
