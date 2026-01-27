@@ -1,0 +1,11 @@
+// .devcontainer/devcontainer.json
+{
+  "name": "Java 17 - ToDoList",
+  "image": "mcr.microsoft.com/devcontainers/java:1-17-bullseye",
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "17"
+    }
+  },
+  "postCreateCommand": "java -version && mvn -v"
+}
