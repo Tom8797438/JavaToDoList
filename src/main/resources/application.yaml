@@ -1,9 +1,11 @@
 spring:
+  # Database connection settings.
   datasource:
     url: jdbc:postgresql://localhost:5432/todo_db
     username: dev2
     password: 456123
     driver-class-name: org.postgresql.Driver
+  # JPA/Hibernate behavior.
   jpa:
     hibernate:
       ddl-auto: update
@@ -13,6 +15,7 @@ spring:
         format_sql: true
         jdbc:
           time_zone: UTC
+  # Flyway migration config.
   flyway:
     enabled: true
     locations: classpath:db/migration
