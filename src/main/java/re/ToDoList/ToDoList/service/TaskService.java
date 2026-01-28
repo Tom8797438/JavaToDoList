@@ -27,7 +27,7 @@ public class TaskService {
         return repo.findAll();
     }
 
-    public Optional<Task> getTask(Long id) {
+    public Optional<Task> getTask(long id) {
         // trouver une task par id.
         return repo.findById(id);
     }
@@ -48,18 +48,18 @@ public class TaskService {
         return repo.save(t);
     }
 
-    public Optional<Task> updateFullTask(Long id, TaskCreateRequest req) {
+    public Optional<Task> updateFullTask(long id, TaskCreateRequest req) {
         // Replaces all updatable fields for an existing task.
         return repo.findById(id).map(t -> {
             t.setDescription(req.description().trim());
             t.setDone(req.done());
             t.setPriority(req.priority());
             t.setDueDate(req.dueDate());  
-            return repo.save(t);
+            return t;
         });
         }
 
-    public Optional<Task> updatePartial(Long id, TaskPatchRequest req) {
+    public Optional<Task> updatePartial(long id, TaskPatchRequest req) {
         // Applies only non-null fields from the PATCH DTO.
         return repo.findById(id).map(t -> {
         if (req.description() != null && !req.description().isBlank()) {
@@ -74,11 +74,11 @@ public class TaskService {
         if (req.dueDate() != null) {
             t.setDueDate(req.dueDate());
         }
-        return repo.save(t);
+        return t;
         });
     }
 
-    public void deleteTask(Long id) {
+    public void deleteTask(long id) {
         // Deletes a task by id.
         repo.deleteById(id);
     }
@@ -92,7 +92,7 @@ public class TaskService {
                             int size) {
 
         // Builds a dynamic JPA Specification based on optional filters.
-        Specification<Task> spec = Specification.where(null);
+        Specification<Task> spec = Specification.unrestricted();
 
         if (q != null && !q.isBlank()) spec = spec.and(descriptionContains(q));
         if (done != null)              spec = spec.and(hasDone(done));

@@ -36,7 +36,7 @@ public class TaskController {
     // Récupérer une tâche par id
     @GetMapping("/{id}")
     public ResponseEntity<Task> getOne(
-        @PathVariable Long id
+        @PathVariable long id
     ) {
         return service.getTask(id)
                 .map(ResponseEntity::ok)
@@ -64,7 +64,7 @@ public class TaskController {
     // Modifier une tâche entièrement
     @PutMapping("/{id}")
     public ResponseEntity<Task> update(
-        @PathVariable Long id,
+        @PathVariable long id,
         @Valid @RequestBody TaskCreateRequest body
     ) {
         return service.updateFullTask(id, body)
@@ -76,7 +76,7 @@ public class TaskController {
     // Modifier une tache partiellement
     @PatchMapping("/{id}")
     public ResponseEntity<Task> partialUpdate(
-        @PathVariable Long id, 
+        @PathVariable long id, 
         @Valid @RequestBody TaskPatchRequest body
     ) {
         return service.updatePartial(id, body)
@@ -86,7 +86,7 @@ public class TaskController {
 
     // Supprimer une tâche
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public void delete(@PathVariable long id) {
         service.deleteTask(id);
     }
 
