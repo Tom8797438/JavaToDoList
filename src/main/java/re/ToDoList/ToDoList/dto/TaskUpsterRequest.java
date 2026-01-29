@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDate;
 
-public record TaskCreateRequest(
+public record TaskUpsterRequest(
   
   // Required description for task creation.
   @NotBlank(message = "description is required") String description,

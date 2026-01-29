@@ -2,7 +2,7 @@ package re.ToDoList.ToDoList.controller;
 
 import re.ToDoList.ToDoList.model.Task;
 import re.ToDoList.ToDoList.service.TaskService;
-import re.ToDoList.ToDoList.dto.TaskCreateRequest;
+import re.ToDoList.ToDoList.dto.TaskUpsterRequest;
 import re.ToDoList.ToDoList.dto.TaskPatchRequest;
 
 import java.net.URI;
@@ -50,7 +50,7 @@ public class TaskController {
     }
 
     @PostMapping
-    public ResponseEntity<Task> create(@Valid @RequestBody TaskCreateRequest req) {
+    public ResponseEntity<Task> create(@Valid @RequestBody TaskUpsterRequest req) {
         Task createdTask = service.createTask(req);
 
         // Build Location header for the created resource.
@@ -65,13 +65,12 @@ public class TaskController {
     @PutMapping("/{id}")
     public ResponseEntity<Task> update(
         @PathVariable long id,
-        @Valid @RequestBody TaskCreateRequest body
+        @Valid @RequestBody TaskUpsterRequest body
     ) {
         return service.updateFullTask(id, body)
                 .map(ResponseEntity::ok)
                 .orElseGet(()-> ResponseEntity.notFound().build());
     }
-
 
     // Modifier une tache partiellement
     @PatchMapping("/{id}")

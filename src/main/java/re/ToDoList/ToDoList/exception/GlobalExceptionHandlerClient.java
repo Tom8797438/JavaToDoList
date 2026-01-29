@@ -23,7 +23,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@RestControllerAdvice
+@RestControllerAdvice // @RestControllerAdvice : composant Spring global, intercepte les exceptions venant des controllers et renvoie du JSON (pas une page HTML).
 @Order(1) // + prioritaire que GlobalExceptionHandlerServer.java
 public class GlobalExceptionHandlerClient {
 

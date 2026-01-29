@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.time.Instant;
 import java.util.Map;
 
-@RestControllerAdvice
+@RestControllerAdvice // @RestControllerAdvice : composant Spring global, intercepte les exceptions venant des controllers et renvoie du JSON (pas une page HTML).
 @Order(2) // Moins prioritaire que GlobalExceptionHandlerClient.java
 public class GlobalExceptionHandlerServer {
 
