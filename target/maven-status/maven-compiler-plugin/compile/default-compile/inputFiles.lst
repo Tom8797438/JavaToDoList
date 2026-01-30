@@ -1,6 +1,7 @@
+D:\Projets\DSI\ToDoList\src\main\java\re\ToDoList\ToDoList\config\JpaAuditConfig.java
 D:\Projets\DSI\ToDoList\src\main\java\re\ToDoList\ToDoList\controller\TaskController.java
-D:\Projets\DSI\ToDoList\src\main\java\re\ToDoList\ToDoList\dto\TaskCreateRequest.java
 D:\Projets\DSI\ToDoList\src\main\java\re\ToDoList\ToDoList\dto\TaskPatchRequest.java
+D:\Projets\DSI\ToDoList\src\main\java\re\ToDoList\ToDoList\dto\TaskUpsterRequest.java
 D:\Projets\DSI\ToDoList\src\main\java\re\ToDoList\ToDoList\exception\ApiError.java
 D:\Projets\DSI\ToDoList\src\main\java\re\ToDoList\ToDoList\exception\GlobalExceptionHandlerClient.java
 D:\Projets\DSI\ToDoList\src\main\java\re\ToDoList\ToDoList\exception\GlobalExceptionHandlerServer.java

@@ -23,9 +23,16 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+
 @RestControllerAdvice // @RestControllerAdvice : composant Spring global, intercepte les exceptions venant des controllers et renvoie du JSON (pas une page HTML).
 @Order(1) // + prioritaire que GlobalExceptionHandlerServer.java
 public class GlobalExceptionHandlerClient {
+    
+    public class TaskNotFoundException extends RuntimeException {
+        public TaskNotFoundException(long id) {
+            super("Task not found: " + id);
+        }
+    }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiError> handleValidation(MethodArgumentNotValidException ex, HttpServletRequest request) {
@@ -122,4 +129,10 @@ public class GlobalExceptionHandlerClient {
         );
         return ResponseEntity.status(status).body(body);
     }
+
+    @ExceptionHandler(TaskNotFoundException.class)
+    public ResponseEntity<ApiError> handleNotFound(TaskNotFoundException ex, HttpServletRequest request) {
+        return error(HttpStatus.NOT_FOUND, ex.getMessage(), request.getRequestURI(), Map.of());
+    }
+
 }

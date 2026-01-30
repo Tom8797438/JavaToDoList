@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import static re.ToDoList.ToDoList.repository.TaskSpecifications.*;
+
 @Service
 @Transactional
 public class TaskService {
@@ -45,6 +46,7 @@ public class TaskService {
         t.setDone(Boolean.TRUE.equals(req.done()));
         t.setPriority(req.priority());
         t.setDueDate(req.dueDate());
+        
         return repo.save(t);
     }
 
@@ -62,6 +64,7 @@ public class TaskService {
     public Optional<Task> updatePartial(long id, TaskPatchRequest req) {
         // Applies only non-null fields from the PATCH DTO.
         return repo.findById(id).map(t -> {
+
         if (req.description() != null && !req.description().isBlank()) {
             t.setDescription(req.description().trim());
         }
