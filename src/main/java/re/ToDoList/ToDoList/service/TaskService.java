@@ -25,7 +25,7 @@ public class TaskService {
 
     public List<Task> getAllTasks() {
         // retourne toute les tasks sans filtrage.
-        return repo.findAll();
+        return repo.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
 
     public Optional<Task> getTask(long id) {
@@ -46,7 +46,7 @@ public class TaskService {
         t.setDone(Boolean.TRUE.equals(req.done()));
         t.setPriority(req.priority());
         t.setDueDate(req.dueDate());
-        
+
         return repo.save(t);
     }
 
