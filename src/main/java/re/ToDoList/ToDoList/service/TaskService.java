@@ -3,7 +3,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.domain.*;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-import re.ToDoList.ToDoList.dto.TaskUpsterRequest;
+import re.ToDoList.ToDoList.dto.TaskCreateRequest;
 import re.ToDoList.ToDoList.dto.TaskPatchRequest;
 import re.ToDoList.ToDoList.model.Task;
 import re.ToDoList.ToDoList.repository.TaskRepository;
@@ -39,7 +39,7 @@ public class TaskService {
     }
 
 
-    public Task createTask(TaskUpsterRequest req) {
+    public Task createTask(TaskCreateRequest req) {
         // Maps / Associe DTO à l’entité avant de sauvegarder.
         Task t = new Task();
         t.setDescription(req.description().trim());
@@ -50,7 +50,7 @@ public class TaskService {
         return repo.save(t);
     }
 
-    public Optional<Task> updateFullTask(long id, TaskUpsterRequest req) {
+    public Optional<Task> updateFullTask(long id, TaskCreateRequest req) {
         // Replaces all updatable fields for an existing task.
         return repo.findById(id).map(t -> {
             t.setDescription(req.description().trim());

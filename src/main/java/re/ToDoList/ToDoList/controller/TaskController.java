@@ -2,7 +2,7 @@ package re.ToDoList.ToDoList.controller;
 
 import re.ToDoList.ToDoList.model.Task;
 import re.ToDoList.ToDoList.service.TaskService;
-import re.ToDoList.ToDoList.dto.TaskUpsterRequest;
+import re.ToDoList.ToDoList.dto.TaskCreateRequest;
 import re.ToDoList.ToDoList.dto.TaskPatchRequest;
 import re.ToDoList.ToDoList.mapper.TaskMapper;
 
@@ -60,7 +60,7 @@ public class TaskController {
     }
 
     @PostMapping
-    public ResponseEntity<TaskResponse> create(@Valid @RequestBody TaskUpsterRequest req) {
+    public ResponseEntity<TaskResponse> create(@Valid @RequestBody TaskCreateRequest req) {
         Task created = service.createTask(req);
         return ResponseEntity.status(HttpStatus.CREATED).body(mapper.toResponse(created));
     }
@@ -76,7 +76,7 @@ public class TaskController {
     @PutMapping("/{id}")
     public ResponseEntity<TaskResponse> put(
         @PathVariable long id,
-        @Valid @RequestBody TaskUpsterRequest req
+        @Valid @RequestBody TaskCreateRequest req
     ) {
         return service.updateFullTask(id, req)
                 .map(mapper::toResponse)

@@ -1,11 +1,12 @@
 D:\Projets\DSI\ToDoList\src\main\java\re\ToDoList\ToDoList\config\JpaAuditConfig.java
 D:\Projets\DSI\ToDoList\src\main\java\re\ToDoList\ToDoList\controller\TaskController.java
+D:\Projets\DSI\ToDoList\src\main\java\re\ToDoList\ToDoList\dto\TaskCreateRequest.java
 D:\Projets\DSI\ToDoList\src\main\java\re\ToDoList\ToDoList\dto\TaskPatchRequest.java
 D:\Projets\DSI\ToDoList\src\main\java\re\ToDoList\ToDoList\dto\TaskResponse.java
-D:\Projets\DSI\ToDoList\src\main\java\re\ToDoList\ToDoList\dto\TaskUpsterRequest.java
 D:\Projets\DSI\ToDoList\src\main\java\re\ToDoList\ToDoList\exception\ApiError.java
-D:\Projets\DSI\ToDoList\src\main\java\re\ToDoList\ToDoList\exception\GlobalExceptionHandlerClient.java
+D:\Projets\DSI\ToDoList\src\main\java\re\ToDoList\ToDoList\exception\GlobalExceptionHandler.java
 D:\Projets\DSI\ToDoList\src\main\java\re\ToDoList\ToDoList\exception\GlobalExceptionHandlerServer.java
+D:\Projets\DSI\ToDoList\src\main\java\re\ToDoList\ToDoList\exception\TaskNotFoundException.java
 D:\Projets\DSI\ToDoList\src\main\java\re\ToDoList\ToDoList\mapper\TaskMapper.java
 D:\Projets\DSI\ToDoList\src\main\java\re\ToDoList\ToDoList\model\Task.java
 D:\Projets\DSI\ToDoList\src\main\java\re\ToDoList\ToDoList\repository\TaskRepository.java
