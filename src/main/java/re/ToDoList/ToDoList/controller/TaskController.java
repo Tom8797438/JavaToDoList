@@ -1,12 +1,9 @@
 package re.ToDoList.ToDoList.controller;
-
 import re.ToDoList.ToDoList.model.Task;
 import re.ToDoList.ToDoList.service.TaskService;
 import re.ToDoList.ToDoList.dto.TaskCreateRequest;
 import re.ToDoList.ToDoList.dto.TaskPatchRequest;
 import re.ToDoList.ToDoList.mapper.TaskMapper;
-
-// import java.net.URI;
 import java.time.LocalDate;
 import java.util.List;
 import org.springframework.data.domain.Page;
@@ -14,14 +11,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-// import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import jakarta.validation.Valid;
 import re.ToDoList.ToDoList.dto.TaskResponse;
-
-// import java.time.LocalDate;
-// import java.util.List;
-
 
 @RestController
 @RequestMapping("/tasks")
@@ -64,13 +55,6 @@ public class TaskController {
         Task created = service.createTask(req);
         return ResponseEntity.status(HttpStatus.CREATED).body(mapper.toResponse(created));
     }
-        // Build Location header for the created resource.
-    //     URI location = ServletUriComponentsBuilder
-    //             .fromCurrentRequest().path("/{id}")
-    //             .buildAndExpand(createdTask.getId()).toUri();
-
-    //     return ResponseEntity.created(location).body(createdTask);
-    // }
 
     // Modifier une tâche entièrement
     @PutMapping("/{id}")
