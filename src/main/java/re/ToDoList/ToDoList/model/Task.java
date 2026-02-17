@@ -1,7 +1,6 @@
 package re.ToDoList.ToDoList.model;
 
 import java.time.*;
-import java.time.LocalDate;
 
 import jakarta.persistence.*;
 

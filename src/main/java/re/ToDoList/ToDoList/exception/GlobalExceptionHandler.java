@@ -4,10 +4,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.*;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import java.time.Instant;
 import java.util.*;
@@ -18,6 +20,16 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(TaskNotFoundException.class)
     public ResponseEntity<ApiError> handleNotFound(TaskNotFoundException ex, HttpServletRequest req) {
         return error(HttpStatus.NOT_FOUND, ex.getMessage(), req.getRequestURI(), Map.of());
+    }
+
+    @ExceptionHandler(NoResourceFoundException.class)
+    public ResponseEntity<ApiError> handleNoResource(NoResourceFoundException ex, HttpServletRequest req) {
+        return error(HttpStatus.NOT_FOUND, "Resource not found", req.getRequestURI(), Map.of());
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<ApiError> handleAccessDenied(AccessDeniedException ex, HttpServletRequest req) {
+        return error(HttpStatus.FORBIDDEN, "Access denied", req.getRequestURI(), Map.of());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -49,11 +61,6 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiError> handleResponseStatus(ResponseStatusException ex, HttpServletRequest req) {
         HttpStatus status = HttpStatus.valueOf(ex.getStatusCode().value());
         return error(status, ex.getReason() != null ? ex.getReason() : status.getReasonPhrase(), req.getRequestURI(), Map.of());
-    }
-
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<ApiError> handleUnhandled(Exception ex, HttpServletRequest req) {
-        return error(HttpStatus.INTERNAL_SERVER_ERROR, "Internal server error", req.getRequestURI(), Map.of());
     }
 
     private ResponseEntity<ApiError> error(HttpStatus status, String message, String path, Map<String, Object> details) {
